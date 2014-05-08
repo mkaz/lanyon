@@ -1,8 +1,8 @@
 
-# Lanyon Markdown Web Server
+# Lanyon, a markdown web server
 
 Lanyon is a simple web server, which reads directories of markdown files and
-converts to HTML and serves. An intuitive and easy way to create a website. 
+converts them to HTML and serves. An intuitive and easy way to create a website. 
 
 Lanyon was derived from my static site generator,
 [Hastie](https://github.com/mkaz/hastie). I grew tired of the multiple steps for
@@ -17,7 +17,7 @@ simplifies this with one set of directories with content and assets.
 #### Install
 
 Binaries are available in the `binaries` folder for Mac OS X and Linux (amd64).
-hou can also build a binary from the available Go source code. 
+You can also build a binary from the available Go source code. 
 
 The only dependency for building is the `github.com/russross/blackfriday`
 library for markdown parsing. So to build yourself, assuming you have [Golang
@@ -39,7 +39,7 @@ path, `~/bin/` or `/usr/local/bin/` are two great spots.
 A quick way to see what's going on is to check out the example site. You can run
 the example site by running the binary from that directory. Lanyon looks for the
 config file `lanyon.json` in the directory it was started in. The config file
-tells it where to look for templates and what directory to serve from.
+tells it where to look for templates and what directory to serve content from.
 
 ```bash
 $ cd lanyon/example
@@ -164,9 +164,12 @@ the error page. If this page does not exist it will serve a plain error message.
 ## Less Support
 
 Lanyon supports automatic compilation of Less files into CSS. This requires
-`lessc` to be installed and then any files created with `.less` extension with
-the public directory will automatically be compiled to css. You should reference
-them as .css
+`lessc` to be installed and then any files created with `.less` extension within
+the public directory will automatically be compiled to css. You should access
+them as `.css`. 
+
+For example, the file `public/a/style.less` would be accessed through the web
+server as `http://localhost:9999/a/style.css`
 
 You can install `lessc` using the node.js package manager, npm. If you already
 have node installed:
@@ -180,7 +183,7 @@ See [lesscss.org](http://lesscss.org/) for more information.
 
 ---
 
-## Performamce
+## Performance
 
 I think Lanyon will perform quite well on most servers. However, I recommend
 setting up a reverse-proxy caching server such as
@@ -199,9 +202,6 @@ proxy cache, but with Amazon CloudFront as a CDN.
 Lanyon is licensed under MIT Open Source license, see LICENSE file for details.
 
 I welcome any comments, suggestions, contributions or just well wishes. Using
-github is probably easiest but if you want, you can e-mail me at marcus@mkaz.com
+github is probably easiest but if you want, you can email me at marcus@mkaz.com
 or reach me on Twitter at @mkaz.
-
-
-
 
