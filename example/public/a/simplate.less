@@ -1,0 +1,186 @@
+/*
+ * Simplate CSS
+ * A simple theme for Lanyon
+ * Marcus Kazmierczak, @mkaz
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300,700);
+
+html {
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 16px;
+  line-height: 1.2em;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+article, aside, details, figcaption, figure, footer, header, main, nav, section {
+  display: block;
+}
+
+img, embed, iframe, object {
+  max-width: 100%;
+}
+
+body {
+  background: white;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  color: #444;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+
+a img {
+  border: 0;
+}
+
+p { margin: 1.5em 0; }
+
+.clearfix:before,
+.clearfix:after,
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+
+.clearfix:after,
+.clear:after {
+  clear: both;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  color: #666;
+  clear: both;
+  margin: 24px 0;
+
+  a, a:visited {
+      color: #666;
+  }
+}
+
+h1 { font-size: 42px; }
+h2 { font-size: 36px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+h6 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+a, a:visited {
+  color: #4444DD;
+  text-decoration: none;
+}
+
+pre {
+    background-color: #F8F8F8;
+    border: 1px solid #DDD;
+    padding: 0px 4px;
+}
+
+pre, code, tt {
+    font-family: "Droid Sans Mono", "Menlo", monospace;
+    font-size: 14px;
+}
+
+div#page {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+header#masthead {
+    border-bottom: 4px dotted #999;
+    padding-top: 16px;
+    margin-bottom: 32px;
+
+    h1 {
+        font-family: "Lato", sans-serif;
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+header:after {
+    content: '';
+    display: table;
+    clear:both;
+}
+
+header h2 {
+    text-transform: capitalize;
+}
+
+header time {
+    font-family: Lato, sans-serif;
+    font-weight: 300;
+}
+
+div.site-branding {
+    float: left;
+}
+
+div.squares {
+    float:right;
+    font-size: 14px;
+}
+
+div.square {
+    float: left;
+    margin-left: 16px;
+}
+
+div.card {
+    background-color: #F0F0F0;
+    border: 1px solid #CCC;
+    padding: 4px 16px;
+    margin-bottom: 32px;
+}
+
+article.category {
+
+    div.posts {
+        margin-left: 64px;
+    }
+
+    div.post span.date {
+        font-family: monospace;
+        color: #999;
+    }
+
+}
+
+footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 4px dotted #999;
+    font-size: 14px;
+    color: #CCC;
+
+    a, a:visited {
+        color: #AAF;
+    }
+}

@@ -1,0 +1,18 @@
+{{ template "header.html" . }}
+
+<article class="post hentry">
+
+  <header>
+	  <h2> {{ .Title }} </h2>
+	  {{ if not .Params.nodate }}
+		<time pubdate> {{ .Date.Format "January 2, 2006" }}</time>
+	  {{ end }}
+  </header>
+
+  {{ .Content }}
+
+
+</article>
+
+
+{{ template "footer.html" . }}

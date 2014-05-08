@@ -1,0 +1,788 @@
+
+/*
+ * CSS based off Sorbet WordPress Theme by the amazing 
+ * Caroline Moore from Automattic. 
+ * http://theme.wordpress.com/themes/sorbet/
+ *
+ * Used and licensed per GPL v2 
+ * http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:300);
+
+/* =Reset
+-------------------------------------------------------------- */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, cite, code,
+del, dfn, em, ins, kbd, q, s, samp,
+small, strong, sub, sup, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, th {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+html {
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+  display: block;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed, iframe, object {
+  max-width: 100%;
+}
+
+table {
+  /* tables still need 'cellspacing="0"' in the markup */
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0 0 24px;
+  width: 100%;
+  margin-bottom: 27px;
+}
+
+caption, th, td, th {
+  font-weight: normal;
+  text-align: left;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+
+blockquote, q {
+  quotes: "" "";
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:hover,
+a:active {
+  outline: 0;
+}
+
+a img {
+  border: 0;
+}
+
+
+body {
+  background: #f0f1f3;
+  line-height: 27px;
+}
+
+
+body,
+button,
+input,
+select,
+textarea {
+  color: #656e7f;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+
+hr {
+  border: 1px solid #ccc;
+  border-width: 0 0 1px 0;
+  margin-top: -1px;
+  background-color: #242d36;
+  height: 1px;
+  margin-bottom: 26px;
+  padding: 0;
+}
+
+p {
+  margin-bottom: 27px;
+}
+
+
+ul {
+  margin: 0 0 27px 27px;
+  list-style: disc;
+}
+ul ul {
+  list-style: square;
+}
+ul ul ul {
+  list-style: circle;
+}
+
+ol {
+  margin: 0 0 27px 27px;
+  list-style: decimal;
+}
+
+ol ol {
+  list-style: lower-alpha;
+}
+ol ol ol {
+  list-style: lower-roman;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 27px;
+}
+
+ul, ol {
+  margin: 0 0 24px 36px;
+}
+
+dt {
+  font-weight: 600;
+}
+
+dd {
+  margin: 0 24px 24px;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 24px;
+  margin-bottom: 27px;
+  color: #9ba2af;
+  font-family: Georgia, serif;
+  border-left: 5px solid rgba(155, 162, 175, 0.25);
+  padding-left: 27px;
+}
+
+blockquote blockquote {
+  font-size: inherit;
+}
+
+address {
+  font-style: italic;
+  margin-bottom: 27px;
+}
+
+pre {
+  background: #F0F0F0;
+  border: 1px solid #EEE;
+  font-family: "Droid Sans Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  line-height: 1.50em;
+  margin-top: -2px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 24px;
+}
+
+code, kbd, var {
+  font-family: "Droid Sans Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  line-height: 1.50em;
+}
+
+abbr {
+  border-bottom: 1px dotted #9ba2af;
+  cursor: help;
+  margin-bottom: 26px;
+}
+
+mark, ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+sup,
+sub {
+  font-size: 0.83333em;
+  line-height: 1.8em;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: .5ex;
+}
+
+small {
+  font-size: 0.83333em;
+  line-height: 1.8em;
+}
+
+figure {
+  margin: 0;
+}
+
+th {
+  font-weight: 700;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Alignment */
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 24px;
+}
+
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 24px;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+  background-color: #fff;
+  border: 1px solid #000;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
+  box-shadow: rgba(0, 0, 0, 0.6) 2px 2px 10px;
+  clip: auto !important;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 24px;
+  padding: 24px;
+  z-index: 100000;
+  position: absolute !important;
+  top: 24px;
+  left: 24px;
+}
+
+/* Clearing */
+
+.clearfix:before,
+.clearfix:after,
+.clear:before,
+.clear:after,
+.cards:before,
+.cards:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after, 
+.site-footer:before,
+.site-footer:after {
+  content: '';
+  display: table;
+}
+
+
+.clearfix:after,
+.clear:after,
+.cards:after,
+.site-header:after,
+.site-content:after, 
+.site-footer:after {
+  clear: both;
+}
+
+
+
+
+/* =Forms
+----------------------------------------------- */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+  vertical-align: baseline;
+  /* Improves appearance and consistency in all browsers */
+  *vertical-align: middle;
+  /* Improves appearance and consistency in all browsers */
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: 1px solid #ccc;
+  border-color: #ccc #ccc #bbb #ccc;
+  border-radius: 3px;
+  background: #e6e6e6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  /* Improves usability and consistency of cursor style between image-type 'input' and others */
+  -webkit-appearance: button;
+  /* Corrects inability to style clickable 'input' types in iOS */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+  border-color: #ccc #bbb #aaa #bbb;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+  border-color: #aaa #bbb #bbb #bbb;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  padding: 0;
+  /* Addresses excess padding in IE8/9 */
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* Addresses appearance set to searchfield in S5, Chrome */
+  -webkit-box-sizing: content-box;
+  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+  border: 0;
+  padding: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+  color: #666;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  color: #111;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  padding: 3px;
+}
+
+textarea {
+  overflow: auto;
+  /* Removes default vertical scrollbar in IE6/7/8/9 */
+  padding-left: 3px;
+  vertical-align: top;
+  /* Improves readability and alignment in all browsers */
+  width: 98%;
+}
+
+
+h6, button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"], .site-footer {
+  letter-spacing: 1px;
+}
+
+
+/* =Global */
+button,
+input,
+select,
+textarea {
+  background: white;
+  color: #242d36;
+  font-family: 'Droid Sans', 'Ubuntu Sans', sans-serif;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto Slab", 'Museo Sans', Georgia, serif;
+  color: #242d36;
+  clear: both;
+}
+
+/* Headings */
+h1 {
+  line-height: 0.57447em;
+  font-size: 36px;
+  margin: 27px 0;
+}
+
+h2 {
+  line-height: 0.93103em;
+  font-size: 24px;
+  margin: 27px 0;
+}
+
+h3 {
+  line-height: 1.17391em;
+  font-size: 18px;
+  margin: 27px 0;
+}
+
+h4 {
+  line-height: 1.5em;
+  font-size: 16px;
+  margin: 27px 0;
+}
+
+h5 {
+  line-height: 1.5em;
+  font-size: 18px;
+  margin: 27px 0;
+  font-style: italic;
+}
+
+h6 {
+  line-height: 1.8em;
+  font-size: 15px;
+  margin: 27px 0;
+}
+
+td, th {
+  border-bottom: 1px solid rgba(155, 162, 175, 0.25);
+  border-collapse: collapse;
+  padding: 6.75px 3px 5.75px;
+}
+
+
+/* Links */
+a {
+  color: #f45145;
+  text-decoration: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+a:visited {
+  color: #f45145;
+}
+a:hover, a:focus, a:active {
+  color: #f77e75;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Show or hide a11y text */
+/* Clearing */
+/* =Layout */
+.site-header {
+  background: #242d36;
+  border-bottom: 5px solid #1e252d;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  z-index: 100;
+
+}
+
+.home .site-content {
+    margin-top: 32px;
+    max-width: 95%;
+}
+
+.site-content {
+  margin: 81px auto 0;
+  max-width: 55.556em;
+}
+
+@media screen and (max-width: 59.306em) {
+  .site-content {
+    max-width: 41.667em;
+  }
+}
+@media screen and (max-width: 47.2226em) {
+  .site-content {
+    margin-top: 54px;
+  }
+}
+
+.site-main {
+  margin: 0 10%;
+}
+
+@media screen and (max-width: 59.306em) {
+  .site-main {
+    margin: 0 auto;
+  }
+}
+
+.site-footer {
+  background: #242d36;
+  border-top: 5px solid #1a2027;
+  clear: both;
+  color: #f0f1f3;
+  font-size: 0.83333em;
+  line-height: 1.8em;
+  margin: 27px auto 0;
+  padding: 27px;
+  text-align: center;
+  width: 100%;
+
+  a {
+    color: #f0f1f3;
+    text-decoration: none;
+  }
+}
+
+.site-info {
+  margin: 0 auto;
+  max-width: 55.556em;
+}
+@media screen and (max-width: 59.306em) {
+  .site-info {
+    max-width: 41.667em;
+  }
+}
+
+/* =Header */
+.site-header-wrapper {
+  margin: 0 auto;
+  max-width: 55.556em;
+}
+@media screen and (max-width: 59.306em) {
+  .site-header-wrapper {
+    max-width: 41.667em;
+  }
+}
+
+.site-branding {
+  float: left;
+  margin: 13.5px 0 8.5px;
+  max-width: 60%;
+}
+
+@media screen and (max-width: 47.2226em) {
+  .site-branding {
+    clear: both;
+    float: none;
+    margin: 27px auto;
+    max-width: 100%;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.site-title {
+  font-size: 2.4rem;
+  line-height: 0;
+  margin-top: 16px;
+
+  a {
+    color: #f0f1f3;
+    padding: 0;
+    text-decoration: none;
+  }
+}
+
+.site-description {
+  color: rgba(240, 241, 243, 0.6);
+  font-size: 0.83333em;
+  line-height: 1.8em;
+  margin: 0;
+}
+
+.squares {
+  float: right;
+  margin: 13.5px 0 8.5px;
+  text-align: right;
+  width: 33%;
+}
+
+.square {
+    float: right;
+    vertical-align: middle;
+    text-align: center;
+    background-color: #f45145;
+    border-radius: 25px;
+    min-width: 50px;
+    min-height: 50px;
+    margin: 0 8px;
+
+
+    a, 
+    a:visited {
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: white;
+      padding-top: 8px;
+      display:inline-block;
+    }
+}
+
+
+@media screen and (max-width: 47.2226em) {
+  .squares {
+    clear: both;
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* home page cards */
+body.home { }
+
+.card {
+   width: 240px;
+   min-height: 300px;
+   float: left;
+   margin-right: 24px;
+   padding: 8px 16px;
+   background-color: white;
+   border: 4px solid #f45145;
+
+  p {
+    margin-top: 16px;
+  }
+
+}
+
+
+
+/* Category Page ---------------------------------- */
+article.category span.date {
+    font-family: 'Droid Sans Mono', 'Menlo', monospace;
+    font-size: 12px;
+}
+
+
+/* =Content */
+
+.hentry {
+  background-color: white;
+  border-top: 8px solid #f45145;
+  margin: 0 0 81px;
+  padding: 27px 60px;
+  position: relative;
+}
+
+.hentry:after {
+  border-top: 3px solid #f23628;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 1;
+}
+
+
+@media screen and (max-width: 47.2226em) {
+  .hentry {
+    margin-bottom: 54px;
+    padding: 16px;
+  }
+}
+
+
+article.post header {
+    margin-bottom:24px;
+
+    h2 {
+      margin-bottom: 8px;
+    }
+}
+
+header h2 { text-transform: capitalize; }
+
+header time {
+    font-family: 'Roboto Slab', serif;
+    font-size: 14px;
+}
+
+
+/* Better styles for embedding GitHub Gists */
+.gist{font-size:13px;line-height:18px;margin-bottom:20px;width:100%;}
+.gist pre{font-family:'Droid Sans Mono',Menlo,monospace;}
+.gist-meta{font-family:Helvetica,Arial,sans-serif;font-size:13px !important}
+.gist-meta a{color:#26a !important;text-decoration:none}
+.gist-meta a:hover{color:#0e4071 !important}
