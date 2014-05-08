@@ -52,7 +52,7 @@ files with the extension `.md` are reference on the web server with .html
 extension.
 
 For example a call to `/giraffe.html` will first check to see if the html file
-exists, if so it will server the file. Otherwise it will check if `giraffe.md`
+exists, if so it will serve the file. Otherwise it will check if `giraffe.md`
 exists and convert that to HTML.
 
 ---
