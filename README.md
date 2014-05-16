@@ -203,5 +203,5 @@ Lanyon is licensed under MIT Open Source license, see LICENSE file for details.
 
 I welcome any comments, suggestions, contributions or just well wishes. Using
 github is probably easiest but if you want, you can email me at marcus@mkaz.com
-or reach me on Twitter at @mkaz.
+or reach me on Twitter at [@mkaz](https://twitter.com/mkaz).
 
