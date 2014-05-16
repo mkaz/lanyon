@@ -41,7 +41,7 @@ var config struct {
 	RedirectDomain []string
 }
 
-var ServerVersion = "0.2"
+var ServerVersion = "0.2.1"
 var staticExpire = 30 // (days) default 1 month
 
 var ts *template.Template
@@ -74,12 +74,26 @@ func init() {
 		config.PublicDir = config.PublicDir + "/"
 	}
 
+	// verify public directory exists
+	if _, err := os.Stat(config.PublicDir); err != nil {
+		log.Fatalln("Public directory does not exist")
+	}
+
 	// add trailing slashes to config directories
 	if !strings.HasSuffix(config.TemplateDir, "/") {
 		config.TemplateDir = config.TemplateDir + "/"
 	}
 
-	ts, _ = template.ParseGlob(config.TemplateDir + "*.html")
+	// verify template directory exists
+	if _, err := os.Stat(config.TemplateDir); err != nil {
+		log.Fatalln("Template directory does not exist")
+	}
+	var err error
+	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
+	if err != nil {
+		log.Fatalln("Error Parsing Templates: ", err)
+	}
+
 }
 
 func main() {
@@ -91,7 +105,7 @@ func main() {
 // handler for all requests
 func getRequest(w http.ResponseWriter, r *http.Request) {
 
-	// check domain redirect returns true on redirect 
+	// check domain redirect returns true on redirect
 	if domainRedirect(w, r) {
 		return
 	}
@@ -165,7 +179,7 @@ func getDirectoryListing(dir string) (html string, err error) {
 	var files []string
 	dirlist, _ := ioutil.ReadDir(dir)
 	for _, fi := range dirlist {
-		f := dir + "/" + fi.Name()
+		f := filepath.Join(dir, fi.Name())
 		ext := filepath.Ext(f)
 		if ext == ".html" || ext == ".md" {
 			files = append(files, f)
