@@ -21,6 +21,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/howeyc/fsnotify"
 	"github.com/russross/blackfriday"
 	"io/ioutil"
 	"log"
@@ -99,12 +100,48 @@ func startup() {
 
 }
 
+func watcher() {
+	// handles template dir direcotry watcher.
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		log.Fatal(err)
+	}
+	done := make(chan bool)
+
+	// process events
+	go func() {
+		for {
+			select {
+			case ev := <-watcher.Event:
+				if ev.IsModify() {
+					log.Println("Templatedir Changed, reload templates", ev)
+					startup()
+				}
+
+			case err := <-watcher.Error:
+				log.Println("error", err)
+			}
+		}
+	}()
+
+	err = watcher.Watch(config.TemplateDir)
+	if err != nil {
+		log.Fatal(err)
+	}
+	//watcher.Close()
+	<-done
+	watcher.Close()
+
+}
+
 func main() {
 
 	flag.StringVar(&configFile, "config", "layon.json", "specify a config cile")
 	flag.Parse()
-
 	startup()
+
+	// must be parametrized
+	go watcher()
 
 	http.HandleFunc("/", getRequest)
 	colonport := fmt.Sprintf(":%d", config.PortNum)
