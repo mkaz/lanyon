@@ -19,6 +19,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/russross/blackfriday"
 	"io/ioutil"
@@ -40,6 +41,8 @@ var config struct {
 	TemplateDir    string
 	RedirectDomain []string
 }
+
+var configFile string
 
 var ServerVersion = "0.2.1"
 var staticExpire = 30 // (days) default 1 month
@@ -64,7 +67,7 @@ type Page struct {
 	Params                                map[string]string
 }
 
-func init() {
+func startup() {
 	loadConfig()
 
 	log.Printf("Lanyon listening on http://localhost:%d", config.PortNum)
@@ -97,6 +100,12 @@ func init() {
 }
 
 func main() {
+
+	flag.StringVar(&configFile, "config", "layon.json", "specify a config cile")
+	flag.Parse()
+
+	startup()
+
 	http.HandleFunc("/", getRequest)
 	colonport := fmt.Sprintf(":%d", config.PortNum)
 	log.Fatal(http.ListenAndServe(colonport, nil))
@@ -363,7 +372,7 @@ func markdownRender(content []byte) []byte {
 }
 
 func loadConfig() {
-	file, err := ioutil.ReadFile("lanyon.json")
+	file, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		log.Fatalln("No config file")
 	}
