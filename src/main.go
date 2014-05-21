@@ -19,6 +19,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/russross/blackfriday"
 	"io/ioutil"
@@ -41,7 +42,9 @@ var config struct {
 	RedirectDomain []string
 }
 
-var ServerVersion = "0.2.1"
+var configFile string
+
+var ServerVersion = "0.2.3"
 var staticExpire = 30 // (days) default 1 month
 
 var ts *template.Template
@@ -64,7 +67,7 @@ type Page struct {
 	Params                                map[string]string
 }
 
-func init() {
+func startup() {
 	loadConfig()
 
 	log.Printf("Lanyon listening on http://localhost:%d", config.PortNum)
@@ -88,15 +91,28 @@ func init() {
 	if _, err := os.Stat(config.TemplateDir); err != nil {
 		log.Fatalln("Template directory does not exist")
 	}
-	var err error
-	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
-	if err != nil {
-		log.Fatalln("Error Parsing Templates: ", err)
+
+	if err := loadTemplates(); err != nil {
+		log.Fatalln("Error Parsing Templates: ", err.Error())
 	}
 
 }
 
+func loadTemplates() (err error) {
+	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
+	if err != nil {
+		log.Println("Error Parsing Tempaltes: ", err)
+		return err
+	}
+	return nil
+}
+
 func main() {
+
+	flag.StringVar(&configFile, "config", "lanyon.json", "specify a config file")
+	flag.Parse()
+	startup()
+
 	http.HandleFunc("/", getRequest)
 	colonport := fmt.Sprintf(":%d", config.PortNum)
 	log.Fatal(http.ListenAndServe(colonport, nil))
@@ -129,7 +145,7 @@ func getRequest(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 		} else {
-			setCacheExpirationDays(w, 30)
+			setCacheExpirationDays(w, staticExpire)
 			http.ServeFile(w, r, fullpath)
 			return
 		}
@@ -363,9 +379,9 @@ func markdownRender(content []byte) []byte {
 }
 
 func loadConfig() {
-	file, err := ioutil.ReadFile("lanyon.json")
+	file, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.Fatalln("No config file")
+		log.Fatalln("No config file found, lanyon.json or specify with --config=FILENAME")
 	}
 
 	if err := json.Unmarshal(file, &config); err != nil {
