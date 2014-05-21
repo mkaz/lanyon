@@ -21,7 +21,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/howeyc/fsnotify"
 	"github.com/russross/blackfriday"
 	"io/ioutil"
 	"log"
@@ -45,7 +44,7 @@ var config struct {
 
 var configFile string
 
-var ServerVersion = "0.2.1"
+var ServerVersion = "0.2.3"
 var staticExpire = 30 // (days) default 1 month
 
 var ts *template.Template
@@ -92,56 +91,27 @@ func startup() {
 	if _, err := os.Stat(config.TemplateDir); err != nil {
 		log.Fatalln("Template directory does not exist")
 	}
-	var err error
-	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
-	if err != nil {
-		log.Fatalln("Error Parsing Templates: ", err)
+
+	if err := loadTemplates(); err != nil {
+		log.Fatalln("Error Parsing Templates: ", err.Error())
 	}
 
 }
 
-func watcher() {
-	// handles template dir direcotry watcher.
-	watcher, err := fsnotify.NewWatcher()
+func loadTemplates() (err error) {
+	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
 	if err != nil {
-		log.Fatal(err)
+		log.Println("Error Parsing Tempaltes: ", err)
+		return err
 	}
-	done := make(chan bool)
-
-	// process events
-	go func() {
-		for {
-			select {
-			case ev := <-watcher.Event:
-				if ev.IsModify() {
-					log.Println("Templatedir Changed, reload templates", ev)
-					startup()
-				}
-
-			case err := <-watcher.Error:
-				log.Println("error", err)
-			}
-		}
-	}()
-
-	err = watcher.Watch(config.TemplateDir)
-	if err != nil {
-		log.Fatal(err)
-	}
-	//watcher.Close()
-	<-done
-	watcher.Close()
-
+	return nil
 }
 
 func main() {
 
-	flag.StringVar(&configFile, "config", "layon.json", "specify a config cile")
+	flag.StringVar(&configFile, "config", "lanyon.json", "specify a config file")
 	flag.Parse()
 	startup()
-
-	// must be parametrized
-	go watcher()
 
 	http.HandleFunc("/", getRequest)
 	colonport := fmt.Sprintf(":%d", config.PortNum)
@@ -175,7 +145,7 @@ func getRequest(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 		} else {
-			setCacheExpirationDays(w, 30)
+			setCacheExpirationDays(w, staticExpire)
 			http.ServeFile(w, r, fullpath)
 			return
 		}
@@ -411,7 +381,7 @@ func markdownRender(content []byte) []byte {
 func loadConfig() {
 	file, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.Fatalln("No config file")
+		log.Fatalln("No config file found, lanyon.json or specify with --config=FILENAME")
 	}
 
 	if err := json.Unmarshal(file, &config); err != nil {
