@@ -400,7 +400,7 @@ func getDirName(fullpath string) (dir string) {
 }
 
 func setCacheExpirationDays(w http.ResponseWriter, days int) {
-	d := time.Duration(int(time.Hour) * 24 * days)
+	d := time.Duration(int64(time.Hour) * 24 * int64(days))
 	expireDate := time.Now().Add(d)
 	expireSecs := days * 24 * 60 * 60
 	w.Header().Add("Cache-Control", fmt.Sprintf("max-age=%d, public", expireSecs))
