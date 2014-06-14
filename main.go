@@ -44,7 +44,7 @@ var config struct {
 
 var configFile string
 
-var ServerVersion = "0.2.3"
+var ServerVersion = "0.2.4"
 var staticExpire = 30 // (days) default 1 month
 
 var ts *template.Template
