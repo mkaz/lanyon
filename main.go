@@ -390,7 +390,6 @@ func loadConfig() {
 		if _, err := os.Stat(configFile); os.IsNotExist(err) {
 			log.Fatalln("Config file not found, /etc/lanyon.json or specify with --config=FILENAME")
 		}
-		return
 	}
 
 	file, err := ioutil.ReadFile(configFile)
