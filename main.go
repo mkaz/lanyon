@@ -379,9 +379,23 @@ func markdownRender(content []byte) []byte {
 }
 
 func loadConfig() {
+
+	// checks if specified file exists, either flag passed in
+	// or default lanyon.json in current directory
+	if _, err := os.Stat(configFile); os.IsNotExist(err) {
+
+		// config file not found
+		// lets check one more spot in /etc/
+		configFile = "/etc/lanyon.json"
+		if _, err := os.Stat(configFile); os.IsNotExist(err) {
+			log.Fatalln("Config file not found, /etc/lanyon.json or specify with --config=FILENAME")
+		}
+		return
+	}
+
 	file, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.Fatalln("No config file found, lanyon.json or specify with --config=FILENAME")
+		log.Fatalln("Error reading config file:", err)
 	}
 
 	if err := json.Unmarshal(file, &config); err != nil {
