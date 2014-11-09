@@ -101,11 +101,7 @@ func startup() {
 
 func loadTemplates() (err error) {
 	ts, err = template.ParseGlob(config.TemplateDir + "*.html")
-	if err != nil {
-		log.Println("Error Parsing Tempaltes: ", err)
-		return err
-	}
-	return nil
+	return err
 }
 
 func main() {
