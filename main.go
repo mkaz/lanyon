@@ -148,7 +148,8 @@ func getRequest(w http.ResponseWriter, r *http.Request) {
 		}
 	} else { // file does not exist
 
-		// check if generated file with false extension
+		// check if false extension and an actual
+		// file should be generated, or 404
 		switch ext {
 		case ".html":
 			html, err = getMarkdownFile(fullpath)
