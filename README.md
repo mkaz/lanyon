@@ -2,7 +2,7 @@
 # Lanyon, a markdown web server
 
 Lanyon is a simple web server, which reads directories of markdown files and
-converts them to HTML and serves. An intuitive and easy way to create a website. 
+converts them to HTML and serves. An intuitive and easy way to create a website.
 
 Lanyon was derived from my static site generator,
 [Hastie](https://github.com/mkaz/hastie). I grew tired of the multiple steps for
@@ -17,7 +17,7 @@ simplifies this with one set of directories with content and assets.
 #### Install
 
 Binaries are available in the `binaries` folder for Mac OS X and Linux (amd64).
-You can also build a binary from the available Go source code. 
+You can also build a binary from the available Go source code.
 
 The only dependency for building is the `github.com/russross/blackfriday`
 library for markdown parsing. So to build yourself, assuming you have [Golang
@@ -27,7 +27,7 @@ installed](http://golang.org/doc/install):
 $ git clone https://github.com/mkaz/lanyon
 $ cd lanyon/src
 $ go get github.com/russross/blackfriday
-$ go build -o lanyon 
+$ go build -o lanyon
 ```
 
 Once you have the binary built or downloaded, copy it to a directory within your
@@ -98,14 +98,14 @@ all requests through the CDN, unless it is an origin request, so it looks like
 
 By far the easiest way to customize is to modify the style.css file to fit your
 needs. The example templates produce a common blog markup, based off the open
-source [WordPress Underscores theme](https://github.com/automattic/_s). 
+source [WordPress Underscores theme](https://github.com/automattic/_s).
 
 For deeper customization, Lanyon uses Go Templates which is a relatively simply
 templating language providing basic variable substitution and minimal logic. You
 can modify the templates to fit your needs. See the full documentation at
 http://golang.org/pkg/text/template/
 
-Get started customizing by looking at the example templates in the repository. 
+Get started customizing by looking at the example templates in the repository.
 Examples exist for post and category templates. You can add your own template by
 naming the file "custom.html" where "custom" is the name of your template.
 
@@ -166,7 +166,7 @@ the error page. If this page does not exist it will serve a plain error message.
 Lanyon supports automatic compilation of Less files into CSS. This requires
 `lessc` to be installed and then any files created with `.less` extension within
 the public directory will automatically be compiled to css. You should access
-them as `.css`. 
+them as `.css`.
 
 For example, the file `public/a/style.less` would be accessed through the web
 server as `http://localhost:9999/a/style.css`
@@ -175,7 +175,7 @@ You can install `lessc` using the node.js package manager, npm. If you already
 have node installed:
 
 ```bash
-$ npm install -g less
+$ npm install -g less less-plugin-clean-css
 ```
 
 See [lesscss.org](http://lesscss.org/) for more information.
