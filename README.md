@@ -25,9 +25,9 @@ installed](http://golang.org/doc/install):
 
 ```bash
 $ git clone https://github.com/mkaz/lanyon
-$ cd lanyon/src
-$ go get github.com/russross/blackfriday
-$ go build -o lanyon
+$ cd lanyon
+$ go get
+$ go build
 ```
 
 Once you have the binary built or downloaded, copy it to a directory within your
